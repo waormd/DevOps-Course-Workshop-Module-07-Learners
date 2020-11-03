@@ -16,7 +16,6 @@ pipeline {
             }
             agent {
                 docker {
-                    label 'dotnet'
                     image 'mcr.microsoft.com/dotnet/core/sdk:3.1' 
                 }
             }
@@ -28,7 +27,6 @@ pipeline {
         stage('npm') {
             agent {
                 docker {
-                    label 'node'
                     image 'node:14-alpine'
                 }
             }

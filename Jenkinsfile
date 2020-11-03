@@ -4,10 +4,10 @@ pipeline {
 
     stages {
         stage('Checkout') {
+            slackSend "hello world" 
             agent any
             steps {
                 checkout scm 
-                slackSend "hello world" 
             }
         }
         stage('dotnet') {

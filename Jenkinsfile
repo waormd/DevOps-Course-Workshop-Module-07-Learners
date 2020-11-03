@@ -4,7 +4,10 @@ pipeline {
 
     stages {
         stage('Start') {
-            slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
+            agent any
+            steps {
+                slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
+            }
         }
         stage('Checkout') {
             agent any

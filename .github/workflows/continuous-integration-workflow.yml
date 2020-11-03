@@ -16,22 +16,40 @@ jobs:
 
     - name: build
       run: dotnet build
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     
     - name: test
       run: dotnet test
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     - name: npm ci
       run: npm ci
       working-directory: ./DotnetTemplate.Web
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     - name: npm build
       run: npm run build
       working-directory: ./DotnetTemplate.Web
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     - name: npm lint
       run: npm run lint
       working-directory: ./DotnetTemplate.Web
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     - name: npm test
       run: npm t
       working-directory: ./DotnetTemplate.Web
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

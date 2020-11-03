@@ -18,14 +18,16 @@ pipeline {
                     image 'mcr.microsoft.com/dotnet/core/sdk:3.1' 
                 }
             }
-            stage('build') {
-                steps {
-                    sh "dotnet build"
+            stages {
+                stage('build') {
+                    steps {
+                        sh "dotnet build"
+                    }
                 }
-            }
-            stage('test') {
-                steps {
-                    sh "dotnet test"
+                stage('test') {
+                    steps {
+                        sh "dotnet test"
+                    }
                 }
             }
         }
@@ -35,31 +37,33 @@ pipeline {
                     image 'node:14-alpine'
                 }
             }
-            stage('ci') {
-                steps {
-                    dir("DotnetTemplate.Web") {
-                        sh "npm ci"
+            stages {
+                stage('ci') {
+                    steps {
+                        dir("DotnetTemplate.Web") {
+                            sh "npm ci"
+                        }
                     }
                 }
-            }
-            stage('build') {
-                steps {
-                    dir("DotnetTemplate.Web") {
-                        sh "npm run build"
+                stage('build') {
+                    steps {
+                        dir("DotnetTemplate.Web") {
+                            sh "npm run build"
+                        }
                     }
                 }
-            }
-            stage('lint') {
-                steps {
-                    dir("DotnetTemplate.Web") {
-                        sh "npm run lint"
+                stage('lint') {
+                    steps {
+                        dir("DotnetTemplate.Web") {
+                            sh "npm run lint"
+                        }
                     }
                 }
-            }
-            stage('test') {
-                steps {
-                    dir("DotnetTemplate.Web") {
-                        sh "npm t"
+                stage('test') {
+                    steps {
+                        dir("DotnetTemplate.Web") {
+                            sh "npm t"
+                        }
                     }
                 }
             }

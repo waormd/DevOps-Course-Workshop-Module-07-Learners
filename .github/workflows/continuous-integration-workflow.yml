@@ -20,10 +20,10 @@ jobs:
         status: starting
       if: always()
 
-    - name: build
+    - name: dotnet build
       run: dotnet build
     
-    - name: test
+    - name: dotnet test
       run: dotnet test
 
     - name: npm ci

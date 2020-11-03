@@ -20,21 +20,14 @@ jobs:
     - name: test
       run: dotnet test
 
-    - name: switch to web context
-      run: cd DotnetTemplate.Web
-
     - name: npm install
-      run: npm install
-    
+      run: cd DotnetTemplate.Web && npm install
+
     - name: npm build
-      run: npm run build
+      run: cd DotnetTemplate.Web && npm run build
 
     - name: npm lint
-      run: npm run lint
+      run: cd DotnetTemplate.Web && npm run lint
 
     - name: npm test
-      run: npm t
-
-    - name: switch back to project root context
-      run: cd ..
-
+      run: cd DotnetTemplate.Web && npm t

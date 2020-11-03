@@ -7,6 +7,14 @@ jobs:
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
     - uses: actions/checkout@v2 # Adds a step to checkout the repository code
+    - uses: actions/setup-dotnet@v1 # Adds a step to checkout the repository code
+      with:
+        dotnet-version: '3.1.x'
 
-    - name: Hello world
-      run: echo 'Hello world'
+    - name: build
+      run: dotnet build
+    
+    - name: test
+      run: dotnet test
+    
+

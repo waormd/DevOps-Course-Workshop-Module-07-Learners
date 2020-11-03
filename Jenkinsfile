@@ -7,7 +7,7 @@ pipeline {
             agent any
             steps {
                 checkout scm 
-                slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
+                slackSend "hello world" 
             }
         }
         stage('dotnet') {

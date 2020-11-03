@@ -22,9 +22,7 @@ pipeline {
                 DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
             }
             agent {
-                docker {
-                    label 'dotnet'
-                }
+                label 'dotnet'
             }
             steps {
                 sh "dotnet build"
@@ -33,9 +31,7 @@ pipeline {
         }
         stage('npm') {
             agent {
-                docker {
-                    label 'node'
-                }
+                label 'node'
             }
             steps {
                 sh "npm ci"

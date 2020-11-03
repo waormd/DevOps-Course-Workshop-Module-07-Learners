@@ -1,6 +1,15 @@
 pipeline {
 
-    agent none
+    agent {
+        docker {
+            label 'dotnet'
+            image 'mcr.microsoft.com/dotnet/core/sdk:3.1' 
+        }
+        docker {
+            label 'node'
+            image 'node:14-alpine'
+        }
+    }
 
     stages {
         stage('Checkout') {
@@ -15,7 +24,6 @@ pipeline {
             agent {
                 docker {
                     label 'dotnet'
-                    image 'mcr.microsoft.com/dotnet/core/sdk:3.1' 
                 }
             }
             steps {
@@ -27,7 +35,6 @@ pipeline {
             agent {
                 docker {
                     label 'node'
-                    image 'node:14-alpine'
                 }
             }
             steps {

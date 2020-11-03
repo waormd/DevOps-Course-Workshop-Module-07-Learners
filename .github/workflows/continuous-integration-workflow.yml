@@ -24,6 +24,7 @@ jobs:
       run: dotnet build
     
     - name: dotnet test
+      id: dotnet-test
       run: dotnet test
 
     - name: npm ci
@@ -39,11 +40,12 @@ jobs:
       working-directory: ./DotnetTemplate.Web
 
     - name: npm test
+      id: npm-test
       run: npm t
       working-directory: ./DotnetTemplate.Web
 
     - uses: act10ns/slack@v1
       with:
         status: ${{ job.status }}
-        steps: ${{ toJson(job.steps) }}
+        steps: ${{ toJson(steps) }}
       if: always()

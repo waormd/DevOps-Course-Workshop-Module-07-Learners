@@ -3,8 +3,10 @@ pipeline {
     agent none
 
     stages {
+        stage('Start') {
+            slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
+        }
         stage('Checkout') {
-            slackSend "hello world" 
             agent any
             steps {
                 checkout scm 

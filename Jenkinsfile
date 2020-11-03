@@ -1,11 +1,6 @@
 pipeline {
-    agent {
-        docker { image 'mcr.microsoft.com/dotnet/core/sdk:3.1' }
-    }
 
-    environment {
-        DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
-    }
+    agent none
 
     stages {
         stage('Checkout') {
@@ -13,14 +8,33 @@ pipeline {
                 checkout scm 
             }
         }
-        stage('Build') {
+        stage('dotnet') {
+            environment {
+                DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
+            }
+            agent {
+                docker {
+                    label 'dotnet'
+                    image 'mcr.microsoft.com/dotnet/core/sdk:3.1' 
+                }
+            }
             steps {
                 sh "dotnet build"
+                sh "dotnet test"
             }
         }
-        stage('Test') {
+        stage('npm') {
+            agent {
+                docker {
+                    label 'node'
+                    image 'node:14-alpine'
+                }
+            }
             steps {
-               sh "dotnet test"
+                sh "npm ci"
+                sh "npm run build"
+                sh "npm run lint"
+                sh "npm test"
             }
         }
     }

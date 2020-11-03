@@ -10,11 +10,19 @@ jobs:
     - uses: actions/setup-dotnet@v1 # Adds a step to checkout the repository code
       with:
         dotnet-version: '3.1.x'
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
     - name: build
       run: dotnet build
     
     - name: test
       run: dotnet test
+
+    - name: npm install
+      run: cd DotnetTemplate.Web && npm install && cd ..
     
+    - name: npm test
+      run: cd DotnetTemplate.Web && npm t && cd ..
 

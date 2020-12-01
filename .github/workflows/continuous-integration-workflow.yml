@@ -6,9 +6,7 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-      DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_USERNAME }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}}
     steps:
     - uses: actions/checkout@v2 # Adds a step to checkout the repository code
     - uses: actions/setup-dotnet@v1 # Adds a step to checkout the repository code
@@ -21,7 +19,6 @@ jobs:
       with:
         status: starting
       if: always()
-
 
     - name: dotnet build
       run: dotnet build

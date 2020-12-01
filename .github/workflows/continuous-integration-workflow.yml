@@ -53,13 +53,21 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: push to heroku
-      if: github.ref == 'refs/head/main'
+      if: github.ref == 'refs/heads/main'
       id: push-to-heroku
       uses: akhileshns/heroku-deploy@v3.6.8 
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "dotnet-template-yes" 
         heroku_email: "waormd@gmail.com"
+
+    - name: health check heroku deploy
+      uses: jtalk/url-health-check-action@v1.2
+      if: github.ref == 'refs/heads/main'
+      with:
+        url: https://dotnet-template-yes.herokuapp.com
+        max-attempts: 3
+        retry-delay: 5s
 
     - uses: act10ns/slack@v1
       with:

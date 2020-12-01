@@ -53,6 +53,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: push to heroku
+      if: github.ref == 'refs/head/main'
       id: push-to-heroku
       uses: akhileshns/heroku-deploy@v3.6.8 
       with:

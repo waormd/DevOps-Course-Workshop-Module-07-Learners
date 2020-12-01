@@ -6,7 +6,7 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
     steps:
     - uses: actions/checkout@v2 # Adds a step to checkout the repository code
     - uses: actions/setup-dotnet@v1 # Adds a step to checkout the repository code
@@ -15,7 +15,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '14'
-    - uses: act10ns/slack@v1.2.1
+    - uses: act10ns/slack@v1
       with:
         status: starting
       if: always()
@@ -59,7 +59,6 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "dotnet-template-yes" 
         heroku_email: "waormd@gmail.com"
-        usedocker: true
 
     - uses: act10ns/slack@v1
       with:

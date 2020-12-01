@@ -52,6 +52,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: push to heroku
+      id: push-to-heroku
+      uses: akhileshns/heroku-deploy@v3.6.8 
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "dotnet-template-yes" 
+        heroku_email: "waormd@gmail.com"
+        usedocker: true
+
     - uses: act10ns/slack@v1
       with:
         status: ${{ job.status }}

@@ -15,7 +15,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '14'
-    - uses: act10ns/slack@v1
+    - uses: act10ns/slack@v1.2.1
       with:
         status: starting
       if: always()
